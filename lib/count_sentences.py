@@ -15,26 +15,21 @@ class MyString:
   
   value = property(get_value, set_value)
 
-  def is_sentence(self):
+  def pun_check(self, char):
     if self._value == "":
       return False
-    elif self._value[-1] == ".":
+    elif self._value[-1] == char:
       return True
     return False
+
+  def is_sentence(self):
+    return self.pun_check(".")
   
   def is_question(self):
-    if self._value == "":
-      return False
-    elif self._value[-1] == "?":
-      return True
-    return False
+    return self.pun_check("?")
   
   def is_exclamation(self):
-    if self._value == "":
-      return False
-    elif self._value[-1] == "!":
-      return True
-    return False
+    return self.pun_check("!")
     
   def count_sentences(self):
     newval = self._value.replace("!", ".").replace("?",".")
